@@ -46,6 +46,7 @@ foreign key (booknumber) references books(isbn)
 create table bookorder(
 orderid char(20) not null,
 usermail varchar(30) not null,
+status int not null,
 isbn varchar(20) not null,
 booknumber int not null,
 orderdate datetime not null,
