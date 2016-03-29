@@ -57,6 +57,9 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
                     <li>
                         <a href="#">Home</a>
                     </li>
+					<li>
+						<a href="vieworder.php">My order</a>
+					</li>
                     <li>
                         <a href="#menu-toggle" id="menu-toggle">Shopping Cart</a>
                     </li>
@@ -135,7 +138,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 				?>
 			</div>
 		</div>
-			<footer>
+		<footer>
 		<div class="container">
         <hr>
             <div class="row">
@@ -153,7 +156,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 		});
 		</script>
 		
-	</footer>
+		</footer>
 		</div>
 	</body>
 </html>

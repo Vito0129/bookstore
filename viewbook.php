@@ -53,6 +53,9 @@ $usermail = $_SESSION['usermail'];
 						<a href="index.php">Home</a>
 					</li>
 					<li>
+						<a href="vieworder.php">My order</a>
+					</li>
+					<li>
 						<a href="#menu-toggle"  id="menu-toggle">Shopping Cart</a>
 					</li>
 					<li>

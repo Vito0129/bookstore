@@ -3,9 +3,12 @@ create database if not exists bookstore;
 use bookstore;
 
 SET foreign_key_checks = 0;
-DROP TABLE IF EXISTS account_book;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS accounts;
+DROP TABLE IF EXISTS review;
+DROP TABLE IF EXISTS bookorderlist;
+DROP TABLE IF EXISTS bookorderdetail;
+DROP TABLE IF EXISTS shoppingcart;
 SET foreign_key_checks = 1;
 
 create table accounts(
@@ -22,7 +25,7 @@ image varchar(100) not null,
 author varchar(30) not null,
 category varchar(30) not null,
 summary text(250) not null,
-price double not null,
+price float(10,2) not null,
 dateadded date not null,
 primary key(isbn)
 );
@@ -48,6 +51,7 @@ id int(10) AUTO_INCREMENT,
 usermail varchar(30) not null,
 status int not null,
 orderdate datetime not null,
+tot_price float(10,2) default '0',
 primary key(id),
 foreign key (usermail) references accounts(usermail)
 )AUTO_INCREMENT=1000000000;
