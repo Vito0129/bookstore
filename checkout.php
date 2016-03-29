@@ -14,7 +14,7 @@ $usermail = $_SESSION['usermail'];
 $date = $_POST['date'];
 $status = 0;
 
-$cart = "select books.isbn, booknumber from books, shoppingcart where books.isbn=shoppingcart.isbn and usermail='$usermail';";
+$cart = "select books.isbn, booknumber, price from books, shoppingcart where books.isbn=shoppingcart.isbn and usermail='$usermail';";
 $list = mysql_query($cart)or die('No:1234 '.mysql_error());
 
 if(mysql_num_rows($list) != 0)
@@ -25,15 +25,20 @@ if(mysql_num_rows($list) != 0)
     $order1 = mysql_query($order)or die('Error submitting to database: '.mysql_error());
     $eachorder = mysql_fetch_assoc($order1);
     $id = $eachorder['id'];
+    $tot_price = 0;
     while ($eachbook = mysql_fetch_assoc($list))
     {
         $isbn = $eachbook['isbn'];
         $number = $eachbook['booknumber'];
+        $price = $eachbook['price'];
+        $tot_price = $tot_price + $number*$price;
         $new = "insert into bookorderdetail(id,isbn,booknumber) values('$id','$isbn','$number');";
         mysql_query($new)or die('Error submitting to database: '.mysql_error());
         $deleter = "delete from shoppingcart where isbn = '$isbn' and usermail = '$usermail'";
         mysql_query($deleter)or die('Error submitting data: '.mysql_error());
     }
+    $changer = "update bookorderlist set tot_price='$tot_price' where id = '$id'";
+    mysql_query($changer)or die('Error submitting data: '.mysql_error());
     mysql_close($con);
     echo "success";
 }
