@@ -21,58 +21,15 @@ $usermail = $_SESSION['usermail'];
 <html>
 <head>
 <title><?php echo $title; ?> </title>
-<!-- <link href="css/style.css" rel="stylesheet" /> -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- Latest compiled and minified JavaScript -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<link href="css/bookstore.css" rel="stylesheet" />
-<script src="js/bookstore.js"></script>
-<link href="css/shop-item.css" rel="stylesheet">
-<link href="css/simple-sidebar.css" rel="stylesheet">
-	
-	<!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	<script src="//code.jquery.com/jquery-1.8.3.min.js"></script>
-	<script>
-		$(document).ready(function() {
-		$tmp = $("#tmp").get(0);
-		
-		$("#sortable").sortable({
-			start: function(event, ui) {
-			},
-			stop: function(event, ui) { 
-				console.log("isNew : ", jQuery.data($tmp, "isNew"));
-				console.log("resultHTML : ", jQuery.data($tmp, "resultHTML"));
-			}
-		});
-
-		$("#draggable li").draggable({
-			connectToSortable: "#sortable",
-			start: function(event, ui) {    
-
-				//Store info in a tmp div         
-				jQuery.data($tmp, "isNew", true);
-				jQuery.data($tmp, "resultHTML", "<b>Here I will add some custom html to EVENT data</b>");
-				
-			},
-			helper: function(event) {
-				return "<div class='custom-helper'>Custom helper for " + $(this).context.innerHTML + "</div>";   
-			},
-			revert: "invalid"
-		});
-	});
-	</script>
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bookstore.css" rel="stylesheet">
+	<link href="css/shop-item.css" rel="stylesheet">
+	<link href="css/simple-sidebar.css" rel="stylesheet">
+	<script src="js/jquery.js"></script>
+	<script src="js/bookstore.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -110,9 +67,7 @@ $usermail = $_SESSION['usermail'];
 <div id="wrapper" class=''>
 	<!-- Sidebar -->
 	<div id="sidebar-wrapper">
-		<form action='checkout.php' method='POST' id = 'checkout' name = 'checkout'>
-			<button class='close' onclick='javascript: checkout'>checkout</button><h3>&nbsp;&nbsp;&nbsp;&nbsp;Cart</h3>
-		</form>
+		<div><button class='close' onclick='javascript: checkout()'>checkout</button><h3>&nbsp;&nbsp;&nbsp;&nbsp;Cart</h3></div>
 		<ul class="sidebar-nav111">
 			<?php
 			$cart = "select books.isbn, title, booknumber from books, shoppingcart where books.isbn=shoppingcart.isbn and usermail='$usermail';";
@@ -202,13 +157,6 @@ mysql_close($con);
                 </div>
             </div>
 		</div>
-	
-		<!-- jQuery -->
-		<script src="js/jquery.js"></script>
-
-		<!-- Bootstrap Core JavaScript -->
-		<script src="js/bootstrap.min.js"></script>
-
 		<!-- Menu Toggle Script -->
 		<script>
 		$("#menu-toggle").click(function(e) {

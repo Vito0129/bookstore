@@ -13,8 +13,6 @@ if (!$con)
 	die("Could not connect to database".mysql_error());
 }
 mysql_select_db('bookstore')or die('Cannot select database bookstore');
-//$usermail = htmlentities($usermail);
-//echo "Your username is ".$_SESSION['usermail']."<br>";
 ?>
 <html>
 	
@@ -26,34 +24,18 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
     <meta name="author" content="">
 	
 	<title>Vito's Bookstore</title>
-	
-	<!-- <link href="css/style.css" rel="stylesheet" /> -->
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	
-	<!-- external css-->
-	<link href="css/bookstore.css" rel="stylesheet" />
-	<script src="js/bookstore.js"></script>
-    <link href="css/shop-item.css" rel="stylesheet">
-	<link href="css/simple-sidebar.css" rel="stylesheet">
-	
-	<!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	<script src="//code.jquery.com/jquery-1.8.3.min.js"></script>
+
+
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bookstore.css" rel="stylesheet">
+    	<link href="css/shop-item.css" rel="stylesheet">
+		<link href="css/simple-sidebar.css" rel="stylesheet">
+		<script src="js/jquery.js"></script>
+		<script src="js/bookstore.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
 	</head>
 	<body>
 	<!-- Navigation -->
@@ -76,7 +58,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
                         <a href="#">Home</a>
                     </li>
                     <li>
-                        <a href="#menu-toggle"  id="menu-toggle">Shopping Cart</a>
+                        <a href="#menu-toggle" id="menu-toggle">Shopping Cart</a>
                     </li>
 					<li>
 						<a href="logout.php">Log Out</a>
@@ -90,9 +72,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 	<div id="wrapper" class=''>
 	<!-- Sidebar -->
 		<div id="sidebar-wrapper">
-			<form action='checkout.php' method='POST' id = 'checkout' name = 'checkout'>
-				<button class='close' onclick='javascript: checkout'>checkout</button><h3>&nbsp;&nbsp;&nbsp;&nbsp;Cart</h3>
-		    </form>
+			<div><button class='close' onclick='javascript: checkout()'>checkout</button><h3>&nbsp;&nbsp;&nbsp;&nbsp;Cart</h3></div>
             <ul class="sidebar-nav111">
 				<?php
 				$cart = "select books.isbn, title, booknumber from books, shoppingcart where books.isbn=shoppingcart.isbn and usermail='$usermail';";
@@ -146,8 +126,7 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
 					echo "<p>Price: $".$books['price']."</p>";
 					echo "<button class='btn btn-info' onclick='addto(\"$isbn\",\"$usermail\",\"$title\")'>Add to Shopping Cart</button><br><br>";
 					echo "</div>";
-					//echo "<script>$('#edit_errors').html('<h3><em><font color=\"red\">Please Correct Errors Before Proceeding</font></em></h3>')</script>";
-				$incre++;
+					$incre++;
 				}
 				?>
 				</div>
@@ -165,12 +144,6 @@ mysql_select_db('bookstore')or die('Cannot select database bookstore');
                 </div>
             </div>
 		</div>
-	
-		<!-- jQuery -->
-		<script src="js/jquery.js"></script>
-
-		<!-- Bootstrap Core JavaScript -->
-		<script src="js/bootstrap.min.js"></script>
 
 		<!-- Menu Toggle Script -->
 		<script>

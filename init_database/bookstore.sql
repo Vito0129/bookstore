@@ -43,15 +43,20 @@ foreign key (usermail) references accounts(usermail),
 foreign key (booknumber) references books(isbn)
 );
 
-create table bookorder(
-orderid char(20) not null,
+create table bookorderlist(
+id int(10) AUTO_INCREMENT,
 usermail varchar(30) not null,
 status int not null,
+orderdate datetime not null,
+primary key(id),
+foreign key (usermail) references accounts(usermail)
+)AUTO_INCREMENT=1000000000;
+
+create table bookorderdetail(
+id int(20) not null,
 isbn varchar(20) not null,
 booknumber int not null,
-orderdate datetime not null,
-primary key(orderid, isbn),
-foreign key (usermail) references accounts(usermail),
+primary key(id, isbn),
 foreign key (isbn) references books(isbn)
 );
 
